@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c1xx : warning C4199: two-phase name lookup is not supported for C++/CLI, C++/CX, or OpenMP; use /Zc:twoPhase-
+d:\7 semester\openmp\openmpcourse\openmp_lab2\openmp_lab2\source.cpp(8): warning C4326: return type of 'main' should be 'int' instead of 'void'
+d:\7 semester\openmp\openmpcourse\openmp_lab2\openmp_lab2\source.cpp(15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  OpenMP_Lab2.vcxproj -> D:\7 semester\OpenMP\OpenMPCourse\OpenMP_Lab2\Debug\OpenMP_Lab2.exe
