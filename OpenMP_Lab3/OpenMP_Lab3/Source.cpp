@@ -1,4 +1,4 @@
-#include "omp.h"
+#include "omp.h"`
 #include <random>
 #include <iostream>
 #include <string>
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < arrSize; ++i)
 	{
 		a[i] = dist6(rng);
-		//std::cout << a[i] << " ";//выводим при необходимости
+		std::cout << a[i] << " ";//выводим при необходимости
 	}
 	std::cout << std::endl;
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < arrSize; ++i)
 	{
 		b[i] = dist6(rng);
-		//std::cout << b[i] << " ";
+		std::cout << b[i] << " ";
 	}
 	std::cout << std::endl;
 
