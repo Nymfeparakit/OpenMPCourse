@@ -1,2 +1,1 @@
-﻿  MPI_Lab4.cpp
-  MPI_Lab4.vcxproj -> C:\7semester\OpenMPCourse\MPI_Lab4\Debug\MPI_Lab4.exe
+﻿D:\Distrib\VS2017\Common7\IDE\VC\VCTargets\Microsoft.Cpp.Platform.targets(57,5): error MSB8020: The build tools for v142 (Platform Toolset = 'v142') cannot be found. To build using the v142 build tools, please install v142 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
