@@ -119,16 +119,29 @@ void encodeMessage(std::string fileName, std::map <wchar_t, std::string> &symbol
 	std::wifstream file(fileName);
 	file.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
 	std::wstring line;
+
+	std::wofstream fs;
+	fs.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::generate_header>));
+	std::string newFileName = "encodeMsg.txt";
+	fs.open(newFileName, std::fstream::out | std::fstream::trunc);
+
 	while (std::getline(file, line)) { //читаем файл построчно
 
 		std::wistringstream iss(line);
 		wchar_t c;
 		//while (!iss.eof()) {
+		int count = 0;
 		while (iss >> std::noskipws >> c) {
+			count += symbolsCodes[c].size();
+			std::wstring wstr(symbolsCodes[c].begin(), symbolsCodes[c].end());
+			fs << c << " " << wstr << std::endl;
 			std::cout << symbolsCodes[c];
 		}
+		fs << count;
 		std::cout << std::endl;
 	}
+
+	fs.close();
 }
 
 void writeSymbolCodesTable(std::map <wchar_t, std::string> &symbolsCodes) {
