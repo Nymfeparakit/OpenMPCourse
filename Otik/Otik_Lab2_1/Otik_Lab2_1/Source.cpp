@@ -139,6 +139,7 @@ void encodeMessage(std::string fileName, std::map <wchar_t, std::string> &symbol
 		}
 		fs << count;
 		std::cout << std::endl;
+		std::cout << "ƒлина кода: " << count << " бит" << std::endl;
 	}
 
 	fs.close();
