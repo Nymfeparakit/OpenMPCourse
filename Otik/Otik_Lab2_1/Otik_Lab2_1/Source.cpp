@@ -131,6 +131,22 @@ void encodeMessage(std::string fileName, std::map <wchar_t, std::string> &symbol
 	}
 }
 
+void writeSymbolCodesTable(std::map <wchar_t, std::string> &symbolsCodes) {
+
+	std::wofstream fs;
+	fs.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::generate_header>));
+	std::string newFileName = "codes.txt";
+	fs.open(newFileName, std::fstream::out | std::fstream::trunc);
+	std::map<wchar_t, std::string>::iterator it;
+	for (it = symbolsCodes.begin(); it != symbolsCodes.end(); ++it) {
+		std::wstring wstr(it->second.begin(), it->second.end());
+		fs << "|" << std::setw(5) << std::left << it->first << "|"
+			<< std::setw(20) << wstr << "|" << std::endl;
+	}
+	fs.close();
+
+}
+
 int main() {
 	
 	setlocale(LC_ALL, "Russian");
@@ -145,6 +161,7 @@ int main() {
 			countSymbolsFrequencies("test.txt", symbolsFrequencies);
 			createSymbolsCodes(symbolsFrequencies, symbolsCodes);
 			encodeMessage("test.txt", symbolsCodes);
+			writeSymbolCodesTable(symbolsCodes);
 		}
 		else {
 			countSymbolsFrequencies(fileName, symbolsFrequencies);
