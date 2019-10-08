@@ -1,3 +1,0 @@
-﻿  MPI_Lab2.cpp
-C:\7 семестр\OpenMPCourse\MPI_Lab2\MPI_Lab2\MPI_Lab2.cpp(18,19): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  MPI_Lab2.vcxproj -> C:\7 семестр\OpenMPCourse\MPI_Lab2\Debug\MPI_Lab2.exe
