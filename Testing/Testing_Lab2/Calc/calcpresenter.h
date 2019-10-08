@@ -6,14 +6,14 @@
 class CalcPresenter
 {
 public:
-    CalcPresenter(CalcView*, Calc*);
+    CalcPresenter(CalculatorView*, Calc*);
     void onPlusClicked();
     void onMinusClicked();
     void onDivideClicked();
     void onMultiplyClicked();
     bool takeArguments(double& a, double &b);
 private:
-    CalcView* calcView;
+    CalculatorView* calcView;
     Calc* calc;
 };
 #endif // CALCPRESENTER_H

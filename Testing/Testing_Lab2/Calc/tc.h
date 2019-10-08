@@ -9,9 +9,15 @@ class TC : public QObject
 public:
     TC();
 private slots:
-    void takeArguments();
+    //void takeArguments();
     void divide_SecondArgIsZero_ThrowsInvalidArgException();
-    //void takeArguments_FirstArgIsNotNumber_
+
+    void takeArguments_FirstArgIsNotNumber_setErrorMsg();
+    void takeArguments_FirstArgIsOutOfRange_setErrorMsg();
+    void takeArguments_FirstArgIsEmpty_setErrorMsg();
+
+    void onPlusClicked_NumberArgs_SetCorrectOpResult();
+    void onPlusClicked_NumberArgs_SetCorrectOpResult_data();
 };
 
 #endif // TC_H
