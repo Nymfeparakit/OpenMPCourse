@@ -9,8 +9,10 @@ int main(int argc, char *argv[])
 {
     int b = 0;
     QApplication a(argc, argv);
-    //TC* tc = new TC();
-    //QTest::qExec(tc, argc, argv);
+    TC* tc = new TC();
+    QTest::qExec(tc, argc, argv);
+
+    /*
     CalcView w;
     w.show();
     CalcViewMock calcMock;
@@ -19,6 +21,7 @@ int main(int argc, char *argv[])
     Calc calc;
     CalcPresenter calcPres(&calcMock, &calc);
     calcPres.onPlusClicked();
+    */
 
     return a.exec();
 }
