@@ -46,12 +46,47 @@ void TC::takeArguments_FirstArgIsNotNumber_setErrorMsg()
     QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
 }
 
+void TC::takeArguments_SecondArgIsNotNumber_setErrorMsg()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "2";
+    calcViewMock.secondArg = "not a number";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
+}
+
 void TC::takeArguments_FirstArgIsOutOfRange_setErrorMsg()
 {
     //Arrange
     CalcViewMock calcViewMock;
     calcViewMock.firstArg = "2e+308";
     calcViewMock.secondArg = "2";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(calcViewMock.errorMsg, "Аргументы не должны выходить "
+                                    "за пределы допустимых значений");
+}
+
+void TC::takeArguments_SecondArgIsOutOfRange_setErrorMsg()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "2";
+    calcViewMock.secondArg = "2e+308";
     Calc calc;
     CalcPresenter calcPresenter(&calcViewMock, &calc);
     double a,b;
@@ -79,6 +114,57 @@ void TC::takeArguments_FirstArgIsEmpty_setErrorMsg()
 
     //Assert
     QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
+}
+
+void TC::takeArguments_SecondArgIsEmpty_setErrorMsg()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "2";
+    calcViewMock.secondArg = "";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
+}
+
+void TC::takeArguments_FirstArgUsesSciNotation_ParseArgCorrectly()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "64.2e+12";
+    calcViewMock.secondArg = "2";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(a, 64.2e+12);
+}
+
+void TC::takeArguments_SecondArgUsesSciNotation_ParseArgCorrectly()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "3";
+    calcViewMock.secondArg = "64.2e+12";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(a, 64.2e+12);
 }
 
 void TC::onPlusClicked_NumberArgs_SetCorrectOpResult_data()
