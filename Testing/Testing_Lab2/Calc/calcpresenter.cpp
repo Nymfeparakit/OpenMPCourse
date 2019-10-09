@@ -13,7 +13,7 @@ bool CalcPresenter::takeArguments(double& a, double &b)
     //получаем аргументы
     QString aStr = calcView->getFirstArgumentAsString();
     QString bStr = calcView->getSecondArgumentAsString();
-    bool ok;//Пытаемся преобразовать в double
+    bool ok;//Пытаемся преобразовать в double00
     try
     {
         a = aStr.toDouble(&ok);
@@ -43,26 +43,30 @@ void CalcPresenter::onPlusClicked()
     double a,b;
     if (!takeArguments(a, b))
         return;
-    calc->sum(a, b);
+    double res = calc->sum(a, b);
+    calcView->printResult(res);
 }
 void CalcPresenter::onMinusClicked()
 {
     double a,b;
     if (!takeArguments(a, b))
         return;
-    calc->subtract(a, b);
+    double res = calc->subtract(a, b);
+    calcView->printResult(res);
 }
 void CalcPresenter::onDivideClicked()
 {
     double a,b;
     if (!takeArguments(a, b))
         return;
-    calc->divide(a, b);
+    double res = calc->divide(a, b);
+    calcView->printResult(res);
 }
 void CalcPresenter::onMultiplyClicked()
 {
     double a,b;
     if (!takeArguments(a, b))
         return;
-    calc->multiply(a, b);
+    double res = calc->multiply(a, b);
+    calcView->printResult(res);
 }
