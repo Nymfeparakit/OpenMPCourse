@@ -331,3 +331,37 @@ void Test_CalcPresenter::onDivideClicked_NumberArgs_SetCorrectOpResult()
     //Assert
     QCOMPARE(calcViewMock.result, result);
 }
+
+void Test_CalcPresenter::takeArguments_FirstArgUsesCommaAsSeparator_setErrorMsg()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "3,2";
+    calcViewMock.secondArg = "64";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
+}
+
+void Test_CalcPresenter::takeArguments_SecondArgUsesCommaAsSeparator_setErrorMsg()
+{
+    //Arrange
+    CalcViewMock calcViewMock;
+    calcViewMock.firstArg = "6";
+    calcViewMock.secondArg = "3,2";
+    Calc calc;
+    CalcPresenter calcPresenter(&calcViewMock, &calc);
+    double a,b;
+
+    //Act
+    calcPresenter.takeArguments(a,b);
+
+    //Assert
+    QCOMPARE(calcViewMock.errorMsg, "В качестве аргумента должно быть число");
+}
