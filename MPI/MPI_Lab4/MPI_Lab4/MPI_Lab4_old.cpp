@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 	const int polynom_size = 2;
-	const int number_of_plnms = 30;
+	const int number_of_plnms = 14;
 	int proc_num, proc_rank;
 
 	MPI_Init(&argc, &argv);
@@ -18,8 +18,17 @@ int main(int argc, char* argv[])
 	MPI_Type_contiguous(number_of_plnms * polynom_size, MPI_DOUBLE, &polynom);
 	MPI_Type_commit(&polynom);
 
+	//TODO возможно ли сделать каждый полином динамическим массивом?
+	//double** polynoms = nullptr;
+	//double* polynoms[number_of_plnms];
 	double polynoms[number_of_plnms][polynom_size * number_of_plnms];
 	if (proc_rank == 0) { //только в 0 процессе генерируем все полиномы
+		//polynoms = new double*[number_of_plnms];
+		/*for (int i = 0; i < number_of_plnms; ++i)
+		{
+			//нужно зарезервировать больше места, так как степени полиномов буду увеличиваться
+			polynoms[i] = new double[polynom_size * number_of_plnms];
+		}*/
 		//Генерируем рандомные коэффициенты
 		std::random_device dev;
 		std::mt19937 rng(dev());
@@ -47,12 +56,12 @@ int main(int argc, char* argv[])
 	}
 
 	//}
-	int recv_count;//число элементов, которое получит процесс
-	double recv_polynoms[number_of_plnms][polynom_size * number_of_plnms];
-	int* send_counts = nullptr;//здесь записывается число элементов, кот отправляется каждому процессу
-	int* displs = nullptr;//смещения 
 	if (number_of_plnms >= proc_num) {
 
+
+
+		int* send_counts = nullptr;//здесь записывается число элементов, кот отправляется каждому процессу
+		int* displs = nullptr;//смещения 
 		int default_chunk_size = number_of_plnms / proc_num;//количество полиномов, которое получает каждый процесс
 		//число оставшихся полиномов, кот нужно будет докинуть последним процессам
 		int nmbr_of_remaining_plnms = number_of_plnms % proc_num;
@@ -60,6 +69,7 @@ int main(int argc, char* argv[])
 		int nmbr_of_frst_procs = proc_num - nmbr_of_remaining_plnms;
 		//std::cout << "proc_num: " << proc_num << std::endl;
 		//std::cout << "default_chunk_size: " << default_chunk_size << std::endl;
+		int recv_count;//число элементов, которое получит процесс
 		if (proc_rank == 0) {//процесс с рангом 0 отправляет другим процессам полиномы
 							 // которые нужно перемножить
 			//выделяем память
@@ -98,6 +108,16 @@ int main(int argc, char* argv[])
 		else {
 			recv_count = default_chunk_size + 1;
 		}
+
+		//TODO заменить на статический
+		//double** recv_polynoms = new double*[number_of_plnms];
+		//double* recv_polynoms[number_of_plnms];
+		double recv_polynoms[number_of_plnms][polynom_size * number_of_plnms];
+		/*for (int i = 0; i < number_of_plnms; ++i)
+		{
+			//нужно зарезервировать больше места, так как степени полиномов буду увеличиваться
+			recv_polynoms[i] = new double[polynom_size * number_of_plnms];
+		}*/
 
 		//int MPI_Scatterv(const void* sendbuf, const int sendcounts[],
 			//const int displs[], MPI_Datatype sendtype, void* recvbuf,
@@ -143,19 +163,12 @@ int main(int argc, char* argv[])
 
 		//Собираем все полиномы 
 		MPI_Gather(recv_polynoms, 1, polynom, polynoms, 1, polynom, 0, MPI_COMM_WORLD);
-	}
-			int number_of_rmng_plnms = 0;
-			if (number_of_plnms >= proc_num) {
-				number_of_rmng_plnms = proc_num;
-			}
-			else {
-				number_of_rmng_plnms = number_of_plnms;
-			}
-			//Число полиномов равно числу процессов
+	
+		//Число полиномов равно числу процессов
 		//Распределяем на 3 процесса
-		int zero_proc_poly_num = number_of_rmng_plnms / 3;//нулевой получит столько
-		int first_proc_poly_num = (number_of_rmng_plnms - zero_proc_poly_num) / 2;//первый получит столько
-		int second_proc_poly_num = number_of_rmng_plnms - zero_proc_poly_num - first_proc_poly_num;//нулевой получит столько
+		int zero_proc_poly_num = proc_num / 3;//нулевой получит столько
+		int first_proc_poly_num = (proc_num - zero_proc_poly_num) / 2;//первый получит столько
+		int second_proc_poly_num = proc_num - zero_proc_poly_num - first_proc_poly_num;//нулевой получит столько
 
 		if (proc_rank == 0) {
 			MPI_Send(polynoms[zero_proc_poly_num], first_proc_poly_num, polynom, 1, 0, MPI_COMM_WORLD);
@@ -176,7 +189,7 @@ int main(int argc, char* argv[])
 
 		if (proc_rank <= 2) {
 			//копия 1го полинома для перемножения
-			double *first_polynom_copy = new double[polynom_size * number_of_plnms]();
+			first_polynom_copy = new double[polynom_size * number_of_plnms]();
 
 			for (int i = 1; i < recv_count; ++i) {
 				//делаем копию 1го полинома
@@ -262,7 +275,7 @@ int main(int argc, char* argv[])
 			delete[] recv_polynoms[i];
 		}*/
 		//delete[] recv_polynoms;
-
+	}
 	MPI_Type_free(&polynom);
 	MPI_Finalize();
 }
