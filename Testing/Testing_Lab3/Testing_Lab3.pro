@@ -24,7 +24,8 @@ SOURCES += \
     calcviewmock.cpp \
     main.cpp \
     calcview.cpp \
-    test_calc.cpp
+    test_calc.cpp \
+    test_calcui.cpp
 
 HEADERS += \
     calc.h \
@@ -32,7 +33,8 @@ HEADERS += \
     calculatorview.h \
     calcview.h \
     calcviewmock.h \
-    test_calc.h
+    test_calc.h \
+    test_calcui.h
 
 FORMS += \
     calcview.ui

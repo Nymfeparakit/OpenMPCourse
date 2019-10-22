@@ -7,7 +7,7 @@ CalcPresenter::CalcPresenter(CalculatorView* _calcView, Calc* _calc)
     ,calc(_calc)
 {
     QPushButton *btn = calcView->pushBtnPlus;
-    QLineEdit *lEdit = calcView->LEditFirstArg;
+    //QLineEdit *lEdit = calcView->LEditFirstArg;
     //QString text = lEdit->text();
     QString btnName = calcView->pushBtnPlus->text();
     connect(calcView->pushBtnPlus, &QPushButton::clicked, this, &CalcPresenter::onPlusClicked);
@@ -49,7 +49,7 @@ bool CalcPresenter::takeArguments(double& a, double &b)
 
 void CalcPresenter::onPlusClicked()
 {
-    qDebug() << QString("onPlusClicked");
+    //qDebug() << QString("onPlusClicked");
     double a,b;
     if (!takeArguments(a, b))
         return;
@@ -69,7 +69,16 @@ void CalcPresenter::onDivideClicked()
     double a,b;
     if (!takeArguments(a, b))
         return;
-    double res = calc->divide(a, b);
+    double res = 0;
+    try
+    {
+        res = calc->divide(a, b);
+    }
+    catch(std::invalid_argument& e)
+    {
+        calcView->displayError(e.what());
+        return;
+    }
     calcView->printResult(res);
 }
 void CalcPresenter::onMultiplyClicked()

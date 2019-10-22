@@ -18,7 +18,6 @@ public:
     QPushButton* pushBtnMinus;
     QPushButton* pushBtnMultiply;
     QPushButton* pushBtnDivide;
-    QLineEdit *LEditFirstArg;
 
 };
 

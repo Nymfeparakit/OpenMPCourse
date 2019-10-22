@@ -16,6 +16,9 @@ CalcView::CalcView(QWidget *pwgt)
     pushBtnMultiply = ui->pushBtnMultiply;
     pushBtnDivide = ui->pushBtnDivide;
     LEditFirstArg = ui->lineEFirstArg;
+    lEditSecondArg = ui->lineESecondArg;
+    lEditRes = ui->lineEResult;
+    msgBxError = nullptr;
     //LEditFirstArg->setText("aaa");
     /*connect(ui->pushBtnPlus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onPlusClicked);
     connect(ui->pushBtnMinus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onMinusClicked);
@@ -35,9 +38,11 @@ void CalcView::printResult(double result)
 }
 void CalcView::displayError(QString message)
 {
-    QMessageBox msgBox;
-    msgBox.setText(message);
-    int ret = msgBox.exec();
+    //QMessageBox msgBox;
+    msgBxError = new QMessageBox();
+    msgBxError->setText(message);
+    int ret = msgBxError->exec();
+    delete msgBxError;
 }
 QString CalcView::getFirstArgumentAsString()
 {
