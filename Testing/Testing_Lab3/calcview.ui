@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>439</width>
+    <width>452</width>
     <height>252</height>
    </rect>
   </property>
@@ -14,13 +14,13 @@
    <string>CalcView</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>270</x>
       <y>60</y>
       <width>139</width>
-      <height>47</height>
+      <height>49</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -39,13 +39,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>60</y>
       <width>139</width>
-      <height>47</height>
+      <height>49</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -64,13 +64,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>190</x>
       <y>60</y>
-      <width>61</width>
-      <height>61</height>
+      <width>195</width>
+      <height>65</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -104,13 +104,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>150</y>
       <width>210</width>
-      <height>24</height>
+      <height>26</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -135,7 +135,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>439</width>
+     <width>452</width>
      <height>26</height>
     </rect>
    </property>

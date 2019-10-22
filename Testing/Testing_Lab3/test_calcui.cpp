@@ -90,4 +90,6 @@ void Test_CalcUI::divideClickedSecondArgIsZero_msgBoxWithErrorShows()
     QVERIFY2(calcView.msgBxError, "Message box not created");
     QVERIFY2(calcView.msgBxError->isVisible(), "Message box is not visible");
     QCOMPARE(calcView.msgBxError->text(), "Деление на 0");
+
+    QTest::mouseClick(calcView.msgBxError->)
 }
