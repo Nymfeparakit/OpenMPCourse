@@ -8,11 +8,12 @@ class CalcPresenter : public QObject
     Q_OBJECT
 public:
     CalcPresenter(CalculatorView*, Calc*);
+    bool takeArguments(double& a, double &b);
+public slots:
     void onPlusClicked();
     void onMinusClicked();
     void onDivideClicked();
     void onMultiplyClicked();
-    bool takeArguments(double& a, double &b);
 private:
     CalculatorView* calcView;
     Calc* calc;

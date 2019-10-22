@@ -3,6 +3,7 @@
 #include <QString>
 #include <QObject>
 #include <QPushButton>
+#include <QLineEdit>
 
 class CalculatorView
 {
@@ -17,6 +18,7 @@ public:
     QPushButton* pushBtnMinus;
     QPushButton* pushBtnMultiply;
     QPushButton* pushBtnDivide;
+    QLineEdit *LEditFirstArg;
 
 };
 

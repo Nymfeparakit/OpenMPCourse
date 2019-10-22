@@ -1,11 +1,17 @@
 #include "calcpresenter.h"
 #include "cmath"
+#include <QDebug>
 
 CalcPresenter::CalcPresenter(CalculatorView* _calcView, Calc* _calc)
     :calcView(_calcView)
     ,calc(_calc)
 {
+    QPushButton *btn = calcView->pushBtnPlus;
+    QLineEdit *lEdit = calcView->LEditFirstArg;
+    //QString text = lEdit->text();
+    QString btnName = calcView->pushBtnPlus->text();
     connect(calcView->pushBtnPlus, &QPushButton::clicked, this, &CalcPresenter::onPlusClicked);
+    //connect(calcView->pushBtnPlus, SIGNAL(clicked()), this, SLOT(onPlusClicked()));
     connect(calcView->pushBtnMinus, &QPushButton::clicked, this, &CalcPresenter::onMinusClicked);
     connect(calcView->pushBtnMultiply, &QPushButton::clicked, this, &CalcPresenter::onMultiplyClicked);
     connect(calcView->pushBtnDivide, &QPushButton::clicked, this, &CalcPresenter::onDivideClicked);
@@ -43,6 +49,7 @@ bool CalcPresenter::takeArguments(double& a, double &b)
 
 void CalcPresenter::onPlusClicked()
 {
+    qDebug() << QString("onPlusClicked");
     double a,b;
     if (!takeArguments(a, b))
         return;

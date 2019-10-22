@@ -9,7 +9,9 @@ int main(int argc, char *argv[])
 {
     int b = 0;
     QApplication a(argc, argv);
-    Test_CalcPresenter* tc = new Test_CalcPresenter();
+    CalcView v;
+    v.show();
+    Test_Calc* tc = new Test_Calc();
     QTest::qExec(tc, argc, argv);
     return a.exec();
 }
