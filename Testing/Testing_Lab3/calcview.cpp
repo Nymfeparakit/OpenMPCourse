@@ -1,7 +1,8 @@
 #include "calcview.h"
 #include "ui_calcview.h"
 #include <QMessageBox>
-class CalcPresenter;
+#include <QTimer>
+//class CalcPresenter;
 
 CalcView::CalcView(QWidget *pwgt)
     :ui(new Ui::CalcView)
@@ -18,7 +19,7 @@ CalcView::CalcView(QWidget *pwgt)
     LEditFirstArg = ui->lineEFirstArg;
     lEditSecondArg = ui->lineESecondArg;
     lEditRes = ui->lineEResult;
-    msgBxError = nullptr;
+    msgBxError = new QMessageBox;
     //LEditFirstArg->setText("aaa");
     /*connect(ui->pushBtnPlus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onPlusClicked);
     connect(ui->pushBtnMinus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onMinusClicked);
@@ -39,10 +40,15 @@ void CalcView::printResult(double result)
 void CalcView::displayError(QString message)
 {
     //QMessageBox msgBox;
-    msgBxError = new QMessageBox();
+    //msgBxError = new QMessageBox();
     msgBxError->setText(message);
-    int ret = msgBxError->exec();
-    delete msgBxError;
+    //if (singleShotMsgError) {
+     //   QTimer* timer;
+      //  QTimer::singleShot(100, msgBxError, SLOT(accept()));
+    //} else {
+            int ret = msgBxError->exec();
+    //}
+    //delete msgBxError;
 }
 QString CalcView::getFirstArgumentAsString()
 {
@@ -51,4 +57,9 @@ QString CalcView::getFirstArgumentAsString()
 QString CalcView::getSecondArgumentAsString()
 {
     return ui->lineESecondArg->text();
+}
+
+void CalcView::setSingleShotMsgError(bool _singleShotMsgError)
+{
+    singleShotMsgError = _singleShotMsgError;
 }

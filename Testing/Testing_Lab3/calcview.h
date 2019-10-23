@@ -30,6 +30,7 @@ public:
     void displayError(QString message);
     QString getFirstArgumentAsString();
     QString getSecondArgumentAsString();
+    void setSingleShotMsgError(bool);
 
 private:
     QTextEdit* MsgField;
@@ -38,6 +39,7 @@ private:
     QLineEdit *lEditSecondArg;
     QLineEdit *lEditRes;
     QMessageBox *msgBxError;
+    bool singleShotMsgError = false;
     //CalcPresenter *calcPresenter;
 };
 
