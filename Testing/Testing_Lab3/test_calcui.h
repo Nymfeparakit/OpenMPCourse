@@ -13,6 +13,7 @@ private slots:
     //void init();
     void initTestCase();
     void cleanup();
+    //void cleanupTestCase();
 
     void plusClicked_numberInResultFieldIsCorrect();
     void minusClicked_numberInResultFieldIsCorrect();

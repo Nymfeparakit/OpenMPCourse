@@ -17,6 +17,7 @@ void Test_CalcUI::cleanup()
 {
     calcView->LEditFirstArg->clear();
     calcView->lEditSecondArg->clear();
+    calcView->lEditRes->clear();
 }
 
 Test_CalcUI::~Test_CalcUI()
@@ -306,7 +307,6 @@ void Test_CalcUI::divideClickedSecondArgIsOutOfRange_msgBoxWithErrorShows()
 
 void  Test_CalcUI::inputFirstArgIsEmpty()
 {
-    QTest::keyClicks(calcView->LEditFirstArg, "");
     QTest::keyClicks(calcView->lEditSecondArg, "2");
     QTimer::singleShot(0, calcView->msgBxError, SLOT(accept()));
 }
@@ -354,7 +354,6 @@ void Test_CalcUI::divideClickedFirstArgIsEmpty_setErrorMsg()
 void  Test_CalcUI::inputSecondArgIsEmpty()
 {
     QTest::keyClicks(calcView->LEditFirstArg, "3");
-    QTest::keyClicks(calcView->lEditSecondArg, "");
     QTimer::singleShot(0, calcView->msgBxError, SLOT(accept()));
 }
 

@@ -2,8 +2,9 @@
 #define CALC_H
 #include <iostream>
 #include <stdlib.h>
+#include "calculator.h"
 
-class Calc
+class Calc : public Calculator
 {
 public:
     Calc();

@@ -2,8 +2,9 @@
 #define CALCPRESENTER_H
 #include <calc.h>
 #include <calcview.h>
+#include "calculatorpresenter.h"
 
-class CalcPresenter : public QObject
+class CalcPresenter : public QObject, public CalculatorPresenter
 {
     Q_OBJECT
 public:

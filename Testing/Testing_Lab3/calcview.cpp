@@ -20,6 +20,10 @@ CalcView::CalcView(QWidget *pwgt)
     lEditSecondArg = ui->lineESecondArg;
     lEditRes = ui->lineEResult;
     msgBxError = new QMessageBox;
+    ui->gridLayout->setAlignment(Qt::AlignTop);
+    ui->verticalLayout->setAlignment(Qt::AlignTop);
+    ui->horizontalLayout->setAlignment(Qt::AlignLeft);
+    //ui->horizontalLayout_2->setAlignment(Qt::AlignBottom);
     //LEditFirstArg->setText("aaa");
     /*connect(ui->pushBtnPlus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onPlusClicked);
     connect(ui->pushBtnMinus, &QPushButton::clicked, calcPresenter, &CalcPresenter::onMinusClicked);
