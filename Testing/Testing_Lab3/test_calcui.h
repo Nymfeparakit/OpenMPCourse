@@ -21,10 +21,13 @@ private slots:
     void multiplyClicked_onMultiplyClickedCalled();
     void divideClicked_onDivideClickedCalled();
 
+    void argsWereSet_argumentsReadCorrectrly();
+
     void displayErrorCalled_ErrorMsgWasShown();
 
-    /*void plusClicked_numberInResultFieldIsCorrect();
-    void minusClicked_numberInResultFieldIsCorrect();
+    //void plusClicked_numberInResultFieldIsCorrect();
+
+/*void minusClicked_numberInResultFieldIsCorrect();
     void multiplyClicked_numberInResultFieldIsCorrect();
     void divideClicked_numberInResultFieldIsCorrect();*/
 

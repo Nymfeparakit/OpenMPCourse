@@ -15,6 +15,13 @@ void Test_CalcUI::initTestCase()
     calcPresenter = new CalcPresenter(calcView, calc);
 }
 
+void Test_CalcUI::cleanup()
+{
+    calcView->LEditFirstArg->clear();
+    calcView->lEditSecondArg->clear();
+    calcView->lEditRes->clear();
+}
+
 void Test_CalcUI::plusClicked_onPlusClickedCalled()
 {
     //Arrange
@@ -109,11 +116,19 @@ void Test_CalcUI::displayErrorCalled_ErrorMsgWasShown()
 
 }
 
-void Test_CalcUI::cleanup()
+void Test_CalcUI::argsWereSet_argumentsReadCorrectrly()
 {
-    calcView->LEditFirstArg->clear();
-    calcView->lEditSecondArg->clear();
-    calcView->lEditRes->clear();
+    //Arrange
+    double a, b;
+
+    //Act
+    QTest::keyClicks(calcView->LEditFirstArg, "12");
+    QTest::keyClicks(calcView->lEditSecondArg, "2");
+    calcPresenter->takeArguments(a, b);
+
+    //Assert
+    QCOMPARE(a, 12);
+    QCOMPARE(b, 2);
 }
 
 Test_CalcUI::~Test_CalcUI()
