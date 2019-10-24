@@ -19,7 +19,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     calc.cpp \
+    calcmock.cpp \
     calcpresenter.cpp \
+    calcpresentermock.cpp \
     calculator.cpp \
     calculatorpresenter.cpp \
     calculatorview.cpp \
@@ -31,7 +33,9 @@ SOURCES += \
 
 HEADERS += \
     calc.h \
+    calcmock.h \
     calcpresenter.h \
+    calcpresentermock.h \
     calculator.h \
     calculatorpresenter.h \
     calculatorview.h \

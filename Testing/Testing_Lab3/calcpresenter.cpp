@@ -2,7 +2,7 @@
 #include "cmath"
 #include <QDebug>
 
-CalcPresenter::CalcPresenter(CalculatorView* _calcView, Calc* _calc)
+CalcPresenter::CalcPresenter(CalculatorView* _calcView, Calculator* _calc)
     :calcView(_calcView)
     ,calc(_calc)
 {

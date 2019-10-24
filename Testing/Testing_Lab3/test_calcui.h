@@ -2,6 +2,7 @@
 #define TEST_CALCUI_H
 #include <QTest>
 #include "calcpresenter.h"
+#include "calcmock.h"
 
 class Test_CalcUI : public QObject
 {
@@ -15,12 +16,19 @@ private slots:
     void cleanup();
     //void cleanupTestCase();
 
-    void plusClicked_numberInResultFieldIsCorrect();
+    void plusClicked_onPlusClickedCalled();
+    void minusClicked_onMinusClickedCalled();
+    void multiplyClicked_onMultiplyClickedCalled();
+    void divideClicked_onDivideClickedCalled();
+
+    void displayErrorCalled_ErrorMsgWasShown();
+
+    /*void plusClicked_numberInResultFieldIsCorrect();
     void minusClicked_numberInResultFieldIsCorrect();
     void multiplyClicked_numberInResultFieldIsCorrect();
-    void divideClicked_numberInResultFieldIsCorrect();
+    void divideClicked_numberInResultFieldIsCorrect();*/
 
-    void divideClickedSecondArgIsZero_msgBoxWithErrorShows();
+    //void divideClickedSecondArgIsZero_msgBoxWithErrorShows();
 
     void plusClickedFirstArgIsNotNumber_msgBoxWithErrorShows();
     void minusClickedFirstArgIsNotNumber_msgBoxWithErrorShows();
@@ -71,7 +79,7 @@ private:
     void inputFirstArgWithCommaAsSeparator();
     void inputSecondArgWithCommaAsSeparator();
     CalcView* calcView;
-    Calc* calc;
+    CalcMock* calc;
     CalcPresenter* calcPresenter;
 };
 
