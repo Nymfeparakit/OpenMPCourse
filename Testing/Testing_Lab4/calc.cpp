@@ -22,7 +22,7 @@ double Calc::multiply(double a, double b)
 double Calc::divide(double a, double b) throw(std::invalid_argument)
 {
     if (abs(b) < 10e-8)
-        throw std::invalid_argument("Деление на 0");
+        throw std::invalid_argument("Divide by zero");
     return a/b;
 }
 

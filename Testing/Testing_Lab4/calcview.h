@@ -35,6 +35,7 @@ public:
     void setSingleShotMsgError(bool);
     QLineEdit* getResField();
     QPushButton* getPlusBtn();
+    QMessageBox *msgBxError;
 
 private:
     QTextEdit* MsgField;
@@ -42,7 +43,6 @@ private:
     QLineEdit *LEditFirstArg;
     QLineEdit *lEditSecondArg;
     QLineEdit *lEditRes;
-    QMessageBox *msgBxError;
     bool singleShotMsgError = false;
     //CalcPresenter *calcPresenter;
 };

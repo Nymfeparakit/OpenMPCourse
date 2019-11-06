@@ -27,17 +27,15 @@ bool CalcPresenter::takeArguments(double& a, double &b)
     {
         a = aStr.toDouble(&ok);
         if (std::isinf(a))
-            throw std::invalid_argument("Аргументы не должны выходить "
-                                        "за пределы допустимых значений");
+            throw std::invalid_argument("Arguments must not exceed acceptable values");
         else if (!ok)
-            throw std::invalid_argument("В качестве аргумента должно быть число");
+            throw std::invalid_argument("The argument must be a number");
 
         b = bStr.toDouble(&ok);
         if (std::isinf(b))
-            throw std::invalid_argument("Аргументы не должны выходить "
-                                        "за пределы допустимых значений");
+            throw std::invalid_argument("Arguments must not exceed acceptable values");
         else if (!ok)
-            throw std::invalid_argument("В качестве аргумента должно быть число");
+            throw std::invalid_argument("The argument must be a number");
     }
     catch(const std::invalid_argument& e)
     {
