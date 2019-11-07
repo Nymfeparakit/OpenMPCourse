@@ -2,6 +2,7 @@
 #include "catch_qt.h"
 #include "calcpresenter.h"
 
+
 SCENARIO( "Add two numbers", "" ) {
 
     CalcView view;
@@ -154,7 +155,7 @@ SCENARIO( "Divide by zero", "" ) {
             view.setSecondArgument(QString::fromUtf8(secondArg.c_str()));
             WHEN( "I press divide" ) {
 
-                QTimer::singleShot(1000, view.msgBxError, SLOT(accept()));
+                QTimer::singleShot(500, view.msgBxError, SLOT(accept()));
                 view.pushBtnDivide->clicked();
 
                 QString errorMsg = "Divide by zero";
@@ -188,7 +189,7 @@ SCENARIO( "First argument is not a number", "" ) {
             view.setSecondArgument(QString::fromUtf8(secondArg.c_str()));
             WHEN( "I press plus" ) {
 
-                QTimer::singleShot(1000, view.msgBxError, SLOT(accept()));
+                QTimer::singleShot(500, view.msgBxError, SLOT(accept()));
                 view.pushBtnPlus->clicked();
 
                 QString errorMsg = "The argument must be a number";
@@ -222,7 +223,7 @@ SCENARIO( "First argument is out of range", "" ) {
             view.setSecondArgument(QString::fromUtf8(secondArg.c_str()));
             WHEN( "I press plus" ) {
 
-                QTimer::singleShot(1000, view.msgBxError, SLOT(accept()));
+                QTimer::singleShot(500, view.msgBxError, SLOT(accept()));
                 view.pushBtnPlus->clicked();
 
                 QString errorMsg = "Arguments must not exceed acceptable values";
@@ -239,5 +240,68 @@ SCENARIO( "First argument is out of range", "" ) {
     }
 
 }
+
+SCENARIO( "Second argument is empty", "" ) {
+
+    CalcView view;
+    view.show();
+    Calc calc;
+    CalcPresenter calcPresenter(&view, &calc);
+
+    std::string firstArg = "2";
+    GIVEN( "I have entered " + firstArg + " into the calculator" ) {
+        view.setFirstArgument(QString::fromUtf8(firstArg.c_str()));
+            WHEN( "I press plus" ) {
+
+                QTimer::singleShot(500, view.msgBxError, SLOT(accept()));
+                view.pushBtnPlus->clicked();
+
+                QString errorMsg = "The argument must be a number";
+                THEN("The error shown should be: " + errorMsg) {
+
+                    REQUIRE( view.msgBxError->text() == errorMsg );
+
+                }
+
+            }
+
+    }
+
+}
+
+SCENARIO( "First argument uses comma as a separator", "" ) {
+
+    CalcView view;
+    view.show();
+    Calc calc;
+    CalcPresenter calcPresenter(&view, &calc);
+
+    std::string firstArg = "2,2";
+    GIVEN( "I have entered " + firstArg + " into the calculator" ) {
+        view.setFirstArgument(QString::fromUtf8(firstArg.c_str()));
+
+        std::string secondArg = "2";
+        AND_GIVEN("I have entered " + secondArg + " into the calculator") {
+            view.setSecondArgument(QString::fromUtf8(secondArg.c_str()));
+            WHEN( "I press plus" ) {
+
+                QTimer::singleShot(500, view.msgBxError, SLOT(accept()));
+                view.pushBtnPlus->clicked();
+
+                QString errorMsg = "The argument must be a number";
+                THEN("The error shown should be: " + errorMsg) {
+
+                    REQUIRE( view.msgBxError->text() == errorMsg );
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
 
 
