@@ -17,6 +17,7 @@ public class Tests {
         driver = new ChromeDriver();
     }
 
+    /*
     private void login() {
 
         WebElement githubLogin = driver.findElement(By.xpath("//button[@class='grid--cell s-btn s-btn__icon s-btn__github bar-md ba bc-black-3']"));
@@ -35,16 +36,57 @@ public class Tests {
         driver.get("https://ru.stackoverflow.com/users/signup?ssrc=head&returnurl=https%3a%2f%2fru.stackoverflow.com%2f");
 
         WebElement elUsernameInput = driver.findElement(By.xpath("//input[@id='display-name']"));
-        elUsernameInput.sendKeys("alex");
+        elUsernameInput.sendKeys("sasha");
         sleep(2000);
         WebElement elEmailInput = driver.findElement(By.xpath("//input[@name='email']"));
-        elEmailInput.sendKeys("aaa@mail.ru");
+        String mail = "sasha@mail.ru";
+        elEmailInput.sendKeys(mail);
         sleep(2000);
         WebElement elPasswordInput = driver.findElement(By.xpath("//input[@name='password']"));
         elPasswordInput.sendKeys("1235678910aa");
         sleep(2000);
         elPasswordInput.submit();
         sleep(2000);
+        WebElement successText = driver.findElement(By.xpath("//div[@class='rid--cell fs-body3 mb8']"));
+        Assert.assertEquals("Registration email sent to " + mail + ". Open this email to finish signup.",
+                successText.getText());
+        driver.quit();
+
+
+    }
+    */
+
+    @Test
+    public void fillOutRegistrationFormAndSubmit_ShouldRegister() {
+
+        String nameStr = "tomsmith";
+        String passwordStr = "SuperSecretPassword!";
+
+        driver.get("http://the-internet.herokuapp.com/login");
+        WebElement name = driver.findElement(By.xpath("//input[@name='username']"));
+        name.sendKeys(nameStr);
+        sleep(2000);
+        WebElement password = driver.findElement(By.xpath("//input[@type='password']"));
+        password.sendKeys(passwordStr);
+        sleep(2000);
+        password.submit();
+        sleep(2000);
+
+        //WebElement textSuccess = driver.findElement(By.xpath("//div[@id='flash']"));
+        WebElement textSuccess = driver.findElement(By.xpath("//h4[@class='subheader']"));
+        Assert.assertEquals("Welcome to the Secure Area. When you are done click logout below.", textSuccess.getText());
+        sleep(2000);
+
+        /*driver.get("http://thedemosite.co.uk/login.php");
+        name = driver.findElement(By.xpath("//input[@NAME='username']"));
+        name.sendKeys(nameStr);
+        sleep(2000);
+        password = driver.findElement(By.xpath("//input[@type='password']"));
+        password.sendKeys(passwordStr);
+        sleep(2000);
+        password.submit();*/
+
+
 
     }
 
@@ -56,7 +98,7 @@ public class Tests {
         }
     }
 
-
+    /*
     @Test
     public void enterExactQuoteInSearch_ShouldFindExactBlog() {
 
@@ -103,7 +145,7 @@ public class Tests {
     }
 
 
-    /*@Test
+    @Test
     public void addPostToFavorite_ShouldIncreaseFavoritesCounter() {
 
         addOrRemoveFavorites();
@@ -117,7 +159,7 @@ public class Tests {
 
         driver.quit();
 
-    }*/
+    }
 
 
     @Test
@@ -159,6 +201,6 @@ public class Tests {
         driver.quit();
 
     }
-
+        */
 
 }
