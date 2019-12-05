@@ -29,7 +29,7 @@ int main() {
 				}
 		}
 	
-	system("pause");
+	//system("pause");
 	int a = 0;
 
 }
