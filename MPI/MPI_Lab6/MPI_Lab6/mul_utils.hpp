@@ -74,6 +74,19 @@ unsigned int toint(longint a)
 	}
 	return result;
 }
+
+long long tolonglong(longint a)
+{
+	if (a.size() > 64)
+		return -1;
+	long long result = 0;
+	int i;
+	for (i = 0; i < a.size(); i++)
+	{
+		result += (1 << i)*a.number[i];
+	}
+	return result;
+}
 //обычное умножение
 longint mult(longint a, longint b)
 {
